@@ -59,7 +59,7 @@ public class FirstRatings {
         String genre = "Comedy"; //can be modified
         int countGenre = 0;
         for (Movie m : movieList) {
-            if (m.getGenres().indexOf(genre) != -1) countGenre++;
+            if (m.getGenres().contains(genre)) countGenre++;
         }
         System.out.println("The number of " + genre + " movies is " + countGenre);
 
