@@ -45,6 +45,7 @@ public class FirstRatings {
         return raterList;
     }
 
+    //helper method to return the index
     public int raterIndex(ArrayList<Rater> raterList, String rater_id) {
         for (int i = 0; i < raterList.size(); i++) {
             if (raterList.get(i).getID().equals(rater_id)) return i;
@@ -52,8 +53,48 @@ public class FirstRatings {
         return -1;
     }
 
-    public void tester() {
-        ArrayList<Rater> r = loadRaters("ratings_short.csv");
-        for (Rater rr : r) System.out.println(rr.numRatings());
+    public void testLoadMovies() {
+        //get the number of movies in the list
+        ArrayList<Movie> movieList = loadMovies("ratedmovies_short.csv"); //modify the String to test on other file
+        System.out.println("The number of movies is " + movieList.size());
+
+        //how many movies included the genre
+        String genre = "Comedy"; //can be modified
+        int countGenre = 0;
+        for (Movie m : movieList) {
+            if (m.getGenres().indexOf(genre) != -1) countGenre++;
+        }
+        System.out.println(countGenre);
+
+        //how many movies are greater than the length
+        int length = 150; //can be modified
+        int countLength = 0;
+        for (Movie m : movieList) {
+            if (m.getMinutes() > length) countLength++;
+        }
+        System.out.println(countLength);
+
+        //find the max number of movies by any director
+        //find who the directors are that direct that many movies
+        HashMap<String, Integer> dirNumMap = new HashMap<>(); //key: director's name, value: movie numbers
+        for (Movie m : movieList) {
+            String[] dirList = m.getDirector().split(", ");
+            for (String dir : dirList) {
+                if (!dirNumMap.containsKey(dir)) {
+                    dirNumMap.put(dir, 1);
+                } else {
+                    int v = dirNumMap.get(dir) + 1;
+                    dirNumMap.put(dir, v);
+                }
+            }
+        }
+        int maxNum = 0;
+        for (int n : dirNumMap.values()) {
+            if (n > maxNum) maxNum = n;
+        }
+        for (String dir : dirNumMap.keySet()) {
+            if (dirNumMap.get(dir) == maxNum) System.out.println(dir);
+        }
+
     }
 }
