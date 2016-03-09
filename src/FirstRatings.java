@@ -16,7 +16,8 @@ public class FirstRatings {
         ArrayList<Movie> movieList = new ArrayList<>();
         FileResource fr = new FileResource("data/" + filename);
         for (CSVRecord record : fr.getCSVParser()){
-            Movie input = new Movie(record.get("id"), record.get("title"), record.get("year"),record.get("genre"));
+            Movie input = new Movie(record.get("id"), record.get("title"), record.get("year"),record.get("genre"),
+                    record.get("director"), record.get("country"), record.get("poster"), Integer.valueOf(record.get("minutes")));
             movieList.add(input);
         }
         return movieList;
@@ -24,6 +25,12 @@ public class FirstRatings {
 
 
     public void tester() {
-        System.out.println(loadMovies("ratedmoviesfull.csv").size());
+        ArrayList<Movie> movieList = loadMovies("ratedmovies_short.csv");
+        System.out.println(movieList.size());
+        int count = 0;
+        for (Movie m : movieList) {
+            if (m.getMinutes() > 150) count++;
+        }
+        System.out.println(count);
     }
 }
