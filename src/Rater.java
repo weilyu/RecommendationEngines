@@ -21,6 +21,7 @@ public class Rater {
         myRatings.add(new Rating(item,rating));
     }
 
+    //return true if this item is in myRatings, and false otherwise
     public boolean hasRating(String item) {
         for(int k=0; k < myRatings.size(); k++){
             if (myRatings.get(k).getItem().equals(item)){
@@ -35,6 +36,7 @@ public class Rater {
         return myID;
     }
 
+    //return the double rating of this item if it is in myRatings
     public double getRating(String item) {
         for(int k=0; k < myRatings.size(); k++){
             if (myRatings.get(k).getItem().equals(item)){
@@ -49,6 +51,7 @@ public class Rater {
         return myRatings.size();
     }
 
+    //return a list of all the items that have been rated
     public ArrayList<String> getItemsRated() {
         ArrayList<String> list = new ArrayList<String>();
         for(int k=0; k < myRatings.size(); k++){
