@@ -43,7 +43,7 @@ public class FirstRatings {
     }
 
     //helper method to return the index
-    public int raterIndex(ArrayList<Rater> raterList, String rater_id) {
+    private int raterIndex(ArrayList<Rater> raterList, String rater_id) {
         for (int i = 0; i < raterList.size(); i++) {
             if (raterList.get(i).getID().equals(rater_id)) return i;
         }
@@ -103,10 +103,8 @@ public class FirstRatings {
 
         //find the number of ratings for a particular rater
         String id = "2"; //can be modified
-        for (Rater r : raterList) {
-            if (r.getID().equals(id)) System.out.println("The number of ratings for rater id-"
-                    + id + " is " + r.getItemsRated().size());
-        }
+        raterList.stream().filter(r -> r.getID().equals(id)).forEach(r -> System.out.println("The number of ratings for rater id-"
+                + id + " is " + r.getItemsRated().size()));
 
         //find the largest umber of ratings by any raters
         int maxRatings = 0;
@@ -132,9 +130,7 @@ public class FirstRatings {
         HashSet<String> movieSet = new HashSet<>();
         for (Rater r : raterList) {
             ArrayList<String> curMovList = r.getItemsRated();
-            for (String s : curMovList) {
-                if (!movieSet.contains(s)) movieSet.add(s);
-            }
+            curMovList.stream().filter(s -> !movieSet.contains(s)).forEach(movieSet::add);
         }
         System.out.println("The number of different movies rated is " + movieSet.size());
     }
