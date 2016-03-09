@@ -39,9 +39,7 @@ public class FirstRatings {
                 curRater.addRating(movie_id, rating);
                 raterList.add(curRater);
             } else {
-                Rater curRater = raterList.get(idx);
-                curRater.addRating(movie_id, rating);
-                raterList.set(idx, curRater);
+                raterList.get(idx).addRating(movie_id, rating);
             }
         }
         return raterList;
