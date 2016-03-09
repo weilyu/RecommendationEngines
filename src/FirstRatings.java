@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Created by lvwei on 3/9/2016.
@@ -64,7 +65,7 @@ public class FirstRatings {
         for (Movie m : movieList) {
             if (m.getGenres().indexOf(genre) != -1) countGenre++;
         }
-        System.out.println(countGenre);
+        System.out.println("The number of " + genre + " movies is " + countGenre);
 
         //how many movies are greater than the length
         int length = 150; //can be modified
@@ -72,7 +73,7 @@ public class FirstRatings {
         for (Movie m : movieList) {
             if (m.getMinutes() > length) countLength++;
         }
-        System.out.println(countLength);
+        System.out.println("The number of movies longer than " + length + " minutes is " + countLength);
 
         //find the max number of movies by any director
         //find who the directors are that direct that many movies
@@ -92,9 +93,53 @@ public class FirstRatings {
         for (int n : dirNumMap.values()) {
             if (n > maxNum) maxNum = n;
         }
+        System.out.println("The directors having the largest movie number are:");
         for (String dir : dirNumMap.keySet()) {
             if (dirNumMap.get(dir) == maxNum) System.out.println(dir);
         }
+        System.out.println("--------------------------------------");
+    }
 
+    public void testLoadRaters() {
+        ArrayList<Rater> raterList = loadRaters("ratings_short.csv");
+        //return the number of raters
+        System.out.println("The number of raters is " + raterList.size());
+
+        //find the number of ratings for a particular rater
+        String id = "2"; //can be modified
+        for (Rater r : raterList) {
+            if (r.getID().equals(id)) System.out.println("The number of ratings for rater id-"
+                    + id + " is " + r.getItemsRated().size());
+        }
+
+        //find the largest umber of ratings by any raters
+        int maxRatings = 0;
+        for (Rater r : raterList) {
+            if (r.numRatings() > maxRatings) maxRatings = r.numRatings();
+        }
+        System.out.println("The largest umber of ratings by any raters is " + maxRatings);
+        //raters who have the max number of ratings
+        System.out.println("Raters who have the max number of ratings are");
+        for (Rater r : raterList) {
+            if (r.numRatings() == maxRatings) System.out.println(r.getID());
+        }
+
+        //find the number of ratings a particular movie has
+        String movie_id = "1798709";
+        int countRating = 0;
+        for (Rater r : raterList) {
+            if (r.hasRating(movie_id)) countRating++;
+        }
+        System.out.println("The number of ratings of movie id:" + movie_id + " is " + countRating);
+
+        //determine how many different movies have been rated by all these raters
+        HashSet<String> movieSet = new HashSet<>();
+        for (Rater r : raterList) {
+            ArrayList<String> curMovList = r.getItemsRated();
+            for (String s : curMovList) {
+                if (!movieSet.contains(s)) movieSet.add(s);
+            }
+        }
+        System.out.println("The number of different movies rated is " + movieSet.size());
     }
 }

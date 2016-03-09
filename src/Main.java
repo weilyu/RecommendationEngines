@@ -5,5 +5,6 @@ public class Main {
     public static void main(String[] args) {
         FirstRatings frt = new FirstRatings();
         frt.testLoadMovies();
+        frt.testLoadRaters();
     }
 }
