@@ -52,4 +52,18 @@ public class SecondRatings {
         return 0.0;
     }
 
+    //return an ArrayList
+    //of all the Rating objects for movies that have at least the minimal number of raters
+    public ArrayList<Rating> getAverageRatings(int minimalRaters) {
+        ArrayList<Rating> output = new ArrayList<>();
+        for (Movie m : myMovies) {
+            String curID = m.getID();
+            double curAverage = getAverageByID(curID, minimalRaters);
+            if (curAverage > 0) {
+                Rating curRating = new Rating(curID, curAverage);
+                output.add(curRating);
+            }
+        }
+        return output;
+    }
 }
