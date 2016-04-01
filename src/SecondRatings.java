@@ -44,7 +44,10 @@ public class SecondRatings {
         double sum = 0;
         if (count >= minimalRaters) {
             for (Rater r : myRaters) {
-                sum += r.getRating(id);
+                double curAverage = r.getRating(id);
+                if (curAverage >= 0) {
+                    sum += r.getRating(id);
+                }
             }
             return sum / count;
         }
