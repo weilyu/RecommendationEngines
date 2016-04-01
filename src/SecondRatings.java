@@ -31,4 +31,25 @@ public class SecondRatings {
         return myRaters.size();
     }
 
+    //returns a double representing the average movie rating for
+    //this ID if there are at least minimalRaters ratings
+    public double getAverageByID(String id, int minimalRaters) {
+        //count ratings number of this movie ID
+        int count = 0;
+        for (Rater r : myRaters) {
+            if (r.hasRating(id)) count++;
+        }
+
+        //if count is larger of equal to minimalRaters, do the average math
+        double sum = 0;
+        if (count >= minimalRaters) {
+            for (Rater r : myRaters) {
+                sum += r.getRating(id);
+            }
+            return sum / count;
+        }
+
+        return 0.0;
+    }
+
 }
