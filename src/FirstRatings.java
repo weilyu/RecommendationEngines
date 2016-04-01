@@ -52,7 +52,7 @@ public class FirstRatings {
 
     public void testLoadMovies() {
         //get the number of movies in the list
-        ArrayList<Movie> movieList = loadMovies("ratedmovies_short.csv"); //modify the String to test on other file
+        ArrayList<Movie> movieList = loadMovies("ratedmoviesfull.csv"); //modify the String to test on other file
         System.out.println("The number of movies is " + movieList.size());
 
         //how many movies included the genre
@@ -89,6 +89,7 @@ public class FirstRatings {
         for (int n : dirNumMap.values()) {
             if (n > maxNum) maxNum = n;
         }
+        System.out.println("The maximun number is " + maxNum);
         System.out.println("The directors having the largest movie number are:");
         for (String dir : dirNumMap.keySet()) {
             if (dirNumMap.get(dir) == maxNum) System.out.println(dir);
@@ -97,12 +98,12 @@ public class FirstRatings {
     }
 
     public void testLoadRaters() {
-        ArrayList<Rater> raterList = loadRaters("ratings_short.csv");
+        ArrayList<Rater> raterList = loadRaters("ratings.csv");
         //return the number of raters
         System.out.println("The number of raters is " + raterList.size());
 
         //find the number of ratings for a particular rater
-        String id = "2"; //can be modified
+        String id = "193"; //can be modified
         raterList.stream().filter(r -> r.getID().equals(id)).forEach(r -> System.out.println("The number of ratings for rater id-"
                 + id + " is " + r.getItemsRated().size()));
 
