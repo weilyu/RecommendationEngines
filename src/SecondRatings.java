@@ -23,4 +23,12 @@ public class SecondRatings {
         myRaters = fr.loadRaters(ratingsFile);
     }
 
+    public int getMovieSize() {
+        return myMovies.size();
+    }
+
+    public int getRaterSize() {
+        return myRaters.size();
+    }
+
 }
