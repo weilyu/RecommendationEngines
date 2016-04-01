@@ -70,7 +70,7 @@ public class SecondRatings {
         return output;
     }
 
-    //eturns the title of the movie with that ID
+    //returns the title of the movie with that ID
     public String getTitle(String id) {
         for (Movie m : myMovies) {
             if (m.getID().equals(id)) {
@@ -78,5 +78,15 @@ public class SecondRatings {
             }
         }
         return "ID not found";
+    }
+
+    //returns the movie ID of this movie
+    public String getID(String title) {
+        for (Movie m : myMovies) {
+            if (m.getTitle().equals(title)) {
+                return m.getID();
+            }
+        }
+        return "No such title";
     }
 }
