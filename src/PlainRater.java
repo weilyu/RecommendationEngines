@@ -8,7 +8,7 @@
 
 import java.util.*;
 
-public class PlainRater {
+public class PlainRater implements Rater {
     private String myID;
     private ArrayList<Rating> myRatings;
 
