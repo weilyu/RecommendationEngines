@@ -8,11 +8,11 @@
 
 import java.util.*;
 
-public class Rater {
+public class PlainRater {
     private String myID;
     private ArrayList<Rating> myRatings;
 
-    public Rater(String id) {
+    public PlainRater(String id) {
         myID = id;
         myRatings = new ArrayList<Rating>();
     }
