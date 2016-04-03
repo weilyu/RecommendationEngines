@@ -32,7 +32,7 @@ public class FirstRatings {
             Double rating = Double.valueOf(record.get("rating"));
             int idx = raterIndex(raterList, rater_id);
             if (idx == -1) {
-                Rater curRater = new Rater(rater_id);
+                Rater curRater = new PlainRater(rater_id);
                 curRater.addRating(movie_id, rating);
                 raterList.add(curRater);
             } else {
