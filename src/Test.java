@@ -14,5 +14,7 @@ public class Test {
         mrwf.printAverageRatingsByGenre();
 
         mrwf.printAverageRatingsByMinutes();
+
+        mrwf.printAverageRatingsByDirectors();
     }
 }

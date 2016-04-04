@@ -2,14 +2,17 @@
  * Created by lvwei on 4/4/2016.
  */
 public class DirectorsFilter implements Filter {
-    private String dir;
+    private String[] dirs;
 
     public DirectorsFilter(String dir) {
-        this.dir = dir;
+        this.dirs = dir.split(",");
     }
 
     @Override
     public boolean satisfies(String id) {
-        return MovieDatabase.getDirector(id).contains(dir);
+        for (String dir : dirs) {
+            if (MovieDatabase.getDirector(id).contains(dir)) return true;
+        }
+        return false;
     }
 }

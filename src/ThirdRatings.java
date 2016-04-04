@@ -67,8 +67,10 @@ public class ThirdRatings {
         ArrayList<String> idsSatisfied = MovieDatabase.filterBy(filterCriteria);
         for (String id : idsSatisfied) {
             double average = getAverageByID(id, minimalRaters);
-            Rating toAdd = new Rating(id, average);
-            output.add(toAdd);
+            if (average > 0) {
+                Rating toAdd = new Rating(id, average);
+                output.add(toAdd);
+            }
         }
         return output;
     }
