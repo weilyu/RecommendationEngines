@@ -52,4 +52,27 @@ public class MovieRunnerWithFilters {
         }
         System.out.println("\n");
     }
+
+    public void printAverageRatingsByGenre() {
+        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+
+        System.out.println("read data for " + sr.getRaterSize() + " raters");
+
+        MovieDatabase.initialize("ratedmovies_short.csv");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        int minimalRaters = 1;
+
+        Filter f = new GenreFilter("Crime");
+
+        ArrayList<Rating> averageRatings =  sr.getAverageRatingsByFilter(minimalRaters, f);
+        System.out.println("found " + averageRatings.size() + " movies");
+
+        Collections.sort(averageRatings);
+        for (Rating r : averageRatings) {
+            System.out.println(r.getValue() + " " + MovieDatabase.getTitle(r.getItem()) + " " + MovieDatabase.getGenres((r.getItem())));
+        }
+        System.out.println("\n");
+    }
 }

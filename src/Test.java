@@ -11,5 +11,8 @@ public class Test {
         System.out.println("\n");
 
         mrwf.printAverageRatingsByYear();
+        System.out.println("\n");
+
+        mrwf.printAverageRatingsByGenre();
     }
 }
