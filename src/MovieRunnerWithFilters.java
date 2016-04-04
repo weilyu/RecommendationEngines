@@ -75,4 +75,27 @@ public class MovieRunnerWithFilters {
         }
         System.out.println("\n");
     }
+
+    public void printAverageRatingsByMinutes() {
+        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+
+        System.out.println("read data for " + sr.getRaterSize() + " raters");
+
+        MovieDatabase.initialize("ratedmovies_short.csv");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        int minimalRaters = 1;
+
+        Filter f = new MinutesFilter(110, 170);
+
+        ArrayList<Rating> averageRatings =  sr.getAverageRatingsByFilter(minimalRaters, f);
+        System.out.println("found " + averageRatings.size() + " movies");
+
+        Collections.sort(averageRatings);
+        for (Rating r : averageRatings) {
+            System.out.println(r.getValue() + " "+ "Time: " + MovieDatabase.getMinutes(r.getItem()) + " " + MovieDatabase.getTitle(r.getItem()));
+        }
+        System.out.println("\n");
+    }
 }
