@@ -8,5 +8,8 @@ public class Test {
 //        mra.getAverageRatingOneMovie();
         MovieRunnerWithFilters mrwf = new MovieRunnerWithFilters();
         mrwf.printAverageRatings();
+        System.out.println("\n");
+
+        mrwf.printAverageRatingsByYear();
     }
 }
