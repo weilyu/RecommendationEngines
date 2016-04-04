@@ -85,15 +85,15 @@ public class FourthRatings {
 
         for (Rater r : RaterDatabase.getRaters()) {
             if (!r.getID().equals(id)) {
-                if (dotProduct(RaterDatabase.getRater(id), r) > 0) {
-                    for (String item : r.getItemsRated()) {
-                        output.add(new Rating(item, r.getRating(item)));
-                    }
-                }
+                output.add(new Rating(r.getID(), dotProduct(RaterDatabase.getRater(id), r)));
             }
         }
 
         Collections.sort(output, Collections.reverseOrder());
         return output;
+    }
+
+    public void getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) {
+
     }
 }
