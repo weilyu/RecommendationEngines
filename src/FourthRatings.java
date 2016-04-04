@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by lvwei on 4/4/2016.
@@ -67,6 +69,7 @@ public class FourthRatings {
         return output;
     }
 
+    //translate a rating from the scale 0 to 10 to the scale -5 to 5 and return the dot product of the ratings of movies that they both rated
     private double dotProduct(Rater me, Rater r) {
         double output = 0;
         for (String item : me.getItemsRated()) {
@@ -74,6 +77,23 @@ public class FourthRatings {
                 output += (5 - me.getRating(item)) * (5 - r.getRating(item));
             }
         }
+        return output;
+    }
+
+    private ArrayList<Rating> getSimilarities(String id) {
+        ArrayList<Rating> output = new ArrayList<>();
+
+        for (Rater r : RaterDatabase.getRaters()) {
+            if (!r.getID().equals(id)) {
+                if (dotProduct(RaterDatabase.getRater(id), r) > 0) {
+                    for (String item : r.getItemsRated()) {
+                        output.add(new Rating(item, r.getRating(item)));
+                    }
+                }
+            }
+        }
+
+        Collections.sort(output, Collections.reverseOrder());
         return output;
     }
 }
