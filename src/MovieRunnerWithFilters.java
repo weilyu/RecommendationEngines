@@ -6,15 +6,15 @@ import java.util.Collections;
  */
 public class MovieRunnerWithFilters {
     public void printAverageRatings() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 35;
 
         //print a list of movies and their average ratings
         //for all those movies that have at least a
@@ -31,15 +31,15 @@ public class MovieRunnerWithFilters {
     }
 
     public void printAverageRatingsByYear() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 20;
 
         Filter f = new YearAfterFilter(2000);
 
@@ -54,17 +54,17 @@ public class MovieRunnerWithFilters {
     }
 
     public void printAverageRatingsByGenre() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 20;
 
-        Filter f = new GenreFilter("Crime");
+        Filter f = new GenreFilter("Comedy");
 
         ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
@@ -77,17 +77,17 @@ public class MovieRunnerWithFilters {
     }
 
     public void printAverageRatingsByMinutes() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 5;
 
-        Filter f = new MinutesFilter(110, 170);
+        Filter f = new MinutesFilter(105, 135);
 
         ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
@@ -100,17 +100,17 @@ public class MovieRunnerWithFilters {
     }
 
     public void printAverageRatingsByDirectors() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 4;
 
-        Filter f = new DirectorsFilter("Charles Chaplin,Michael Mann,Spike Jonze");
+        Filter f = new DirectorsFilter("Clint Eastwood,Joel Coen,Martin Scorsese,Roman Polanski,Nora Ephron,Ridley Scott,Sydney Pollack");
 
         ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
@@ -123,19 +123,19 @@ public class MovieRunnerWithFilters {
     }
 
     public void printAverageRatingsByYearAfterAndGenre() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 8;
 
         AllFilters f = new AllFilters();
-        f.addFilter(new YearAfterFilter(1980));
-        f.addFilter(new GenreFilter("Romance"));
+        f.addFilter(new YearAfterFilter(1990));
+        f.addFilter(new GenreFilter("Drama"));
 
         ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
@@ -148,19 +148,19 @@ public class MovieRunnerWithFilters {
     }
 
     public void printAverageRatingsByDirectorsAndMinutes() {
-        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+        ThirdRatings sr = new ThirdRatings("ratings.csv");
 
         System.out.println("read data for " + sr.getRaterSize() + " raters");
 
-        MovieDatabase.initialize("ratedmovies_short.csv");
+        MovieDatabase.initialize("ratedmoviesfull.csv");
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        int minimalRaters = 1;
+        int minimalRaters = 3;
 
         AllFilters f = new AllFilters();
-        f.addFilter(new MinutesFilter(30, 170));
-        f.addFilter(new DirectorsFilter("Spike Jonze,Michael Mann,Charles Chaplin,Francis Ford Coppola"));
+        f.addFilter(new MinutesFilter(90, 180));
+        f.addFilter(new DirectorsFilter("Clint Eastwood,Joel Coen,Tim Burton,Ron Howard,Nora Ephron,Sydney Pollack"));
 
         ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
