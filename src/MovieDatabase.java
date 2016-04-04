@@ -8,7 +8,7 @@ public class MovieDatabase {
     public static void initialize(String moviefile) {
         if (ourMovies == null) {
             ourMovies = new HashMap<String,Movie>();
-            loadMovies("data/" + moviefile);
+            loadMovies(moviefile);
         }
     }
 
