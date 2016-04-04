@@ -19,8 +19,7 @@ public class EfficientRater implements Rater {
 
     //return true if this item is in myRatings, and false otherwise
     public boolean hasRating(String item) {
-        if (myRatings.containsKey(item)) return true;
-        return false;
+        return myRatings.containsKey(item);
     }
 
     public String getID() {
@@ -39,7 +38,6 @@ public class EfficientRater implements Rater {
 
     //return a list of all the items that have been rated
     public ArrayList<String> getItemsRated() {
-        ArrayList<String> list = (ArrayList<String>) myRatings.keySet();
-        return list;
+        return (ArrayList<String>) myRatings.keySet();
     }
 }
