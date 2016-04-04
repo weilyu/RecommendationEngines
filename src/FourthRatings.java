@@ -66,4 +66,14 @@ public class FourthRatings {
         }
         return output;
     }
+
+    private double dotProduct(Rater me, Rater r) {
+        double output = 0;
+        for (String item : me.getItemsRated()) {
+            if (r.hasRating(item)) {
+                output += (5 - me.getRating(item)) * (5 - r.getRating(item));
+            }
+        }
+        return output;
+    }
 }
