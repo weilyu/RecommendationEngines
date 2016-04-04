@@ -16,5 +16,9 @@ public class Test {
         mrwf.printAverageRatingsByMinutes();
 
         mrwf.printAverageRatingsByDirectors();
+
+        mrwf.printAverageRatingsByYearAfterAndGenre();
+
+        mrwf.printAverageRatingsByDirectorsAndMinutes();
     }
 }

@@ -20,7 +20,7 @@ public class MovieRunnerWithFilters {
         //for all those movies that have at least a
         //specified number of ratings, sorted by averages, lowest rating to highest rating
         //one movie per line (print its rating first, followed by its title)
-        ArrayList<Rating> averageRatings =  sr.getAverageRatings(minimalRaters);
+        ArrayList<Rating> averageRatings = sr.getAverageRatings(minimalRaters);
         System.out.println("found " + averageRatings.size() + " movies");
 
         Collections.sort(averageRatings);
@@ -43,7 +43,7 @@ public class MovieRunnerWithFilters {
 
         Filter f = new YearAfterFilter(2000);
 
-        ArrayList<Rating> averageRatings =  sr.getAverageRatingsByFilter(minimalRaters, f);
+        ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
 
         Collections.sort(averageRatings);
@@ -66,7 +66,7 @@ public class MovieRunnerWithFilters {
 
         Filter f = new GenreFilter("Crime");
 
-        ArrayList<Rating> averageRatings =  sr.getAverageRatingsByFilter(minimalRaters, f);
+        ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
 
         Collections.sort(averageRatings);
@@ -89,12 +89,12 @@ public class MovieRunnerWithFilters {
 
         Filter f = new MinutesFilter(110, 170);
 
-        ArrayList<Rating> averageRatings =  sr.getAverageRatingsByFilter(minimalRaters, f);
+        ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
 
         Collections.sort(averageRatings);
         for (Rating r : averageRatings) {
-            System.out.println(r.getValue() + " "+ "Time: " + MovieDatabase.getMinutes(r.getItem()) + " " + MovieDatabase.getTitle(r.getItem()));
+            System.out.println(r.getValue() + " " + "Time: " + MovieDatabase.getMinutes(r.getItem()) + " " + MovieDatabase.getTitle(r.getItem()));
         }
         System.out.println("\n");
     }
@@ -112,12 +112,63 @@ public class MovieRunnerWithFilters {
 
         Filter f = new DirectorsFilter("Charles Chaplin,Michael Mann,Spike Jonze");
 
-        ArrayList<Rating> averageRatings =  sr.getAverageRatingsByFilter(minimalRaters, f);
+        ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
         System.out.println("found " + averageRatings.size() + " movies");
 
         Collections.sort(averageRatings);
         for (Rating r : averageRatings) {
             System.out.println(r.getValue() + " " + MovieDatabase.getTitle(r.getItem()) + " " + MovieDatabase.getDirector(r.getItem()));
+        }
+        System.out.println("\n");
+    }
+
+    public void printAverageRatingsByYearAfterAndGenre() {
+        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+
+        System.out.println("read data for " + sr.getRaterSize() + " raters");
+
+        MovieDatabase.initialize("ratedmovies_short.csv");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        int minimalRaters = 1;
+
+        AllFilters f = new AllFilters();
+        f.addFilter(new YearAfterFilter(1980));
+        f.addFilter(new GenreFilter("Romance"));
+
+        ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
+        System.out.println("found " + averageRatings.size() + " movies");
+
+        Collections.sort(averageRatings);
+        for (Rating r : averageRatings) {
+            System.out.println(r.getValue() + " " + MovieDatabase.getYear(r.getItem()) + " " + MovieDatabase.getTitle(r.getItem()) + " " + MovieDatabase.getDirector(r.getItem()));
+        }
+        System.out.println("\n");
+    }
+
+    public void printAverageRatingsByDirectorsAndMinutes() {
+        ThirdRatings sr = new ThirdRatings("ratings_short.csv");
+
+        System.out.println("read data for " + sr.getRaterSize() + " raters");
+
+        MovieDatabase.initialize("ratedmovies_short.csv");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        int minimalRaters = 1;
+
+        AllFilters f = new AllFilters();
+        f.addFilter(new MinutesFilter(30, 170));
+        f.addFilter(new DirectorsFilter("Spike Jonze,Michael Mann,Charles Chaplin,Francis Ford Coppola"));
+
+        ArrayList<Rating> averageRatings = sr.getAverageRatingsByFilter(minimalRaters, f);
+        System.out.println("found " + averageRatings.size() + " movies");
+
+        Collections.sort(averageRatings);
+        for (Rating r : averageRatings) {
+            System.out.println(r.getValue() + " " + "Time: " + MovieDatabase.getMinutes(r.getItem()) + " " + MovieDatabase.getTitle(r.getItem())
+            + " " + MovieDatabase.getDirector(r.getItem()));
         }
         System.out.println("\n");
     }
