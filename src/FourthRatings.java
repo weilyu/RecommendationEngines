@@ -1,20 +1,10 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 
 /**
  * Created by lvwei on 4/4/2016.
  */
 public class FourthRatings {
-
-    public FourthRatings() {
-        // default constructor
-        this("ratings.csv");
-    }
-
-    public FourthRatings(String ratingsFile) {
-    }
 
     //returns a double representing the average movie rating for
     //this ID if there are at least minimalRaters ratings
@@ -84,14 +74,12 @@ public class FourthRatings {
     private ArrayList<Rating> getSimilarities(String id) {
         ArrayList<Rating> output = new ArrayList<>();
 
-        for (Rater r : RaterDatabase.getRaters()) {
-            if (!r.equals(RaterDatabase.getRater(id))) {
-                double value = dotProduct(RaterDatabase.getRater(id), r);
-                if (value > 0) {
-                    output.add(new Rating(r.getID(), value));
-                }
+        RaterDatabase.getRaters().stream().filter(r -> !r.equals(RaterDatabase.getRater(id))).forEach(r -> {
+            double value = dotProduct(RaterDatabase.getRater(id), r);
+            if (value > 0) {
+                output.add(new Rating(r.getID(), value));
             }
-        }
+        });
 
 
         Collections.sort(output, Collections.reverseOrder());

@@ -6,7 +6,7 @@ import java.util.Collections;
  */
 public class MovieRunnerSimilarRatings {
     public void printAverageRatings() {
-        FourthRatings sr = new FourthRatings("ratings.csv");
+        FourthRatings sr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
@@ -32,7 +32,7 @@ public class MovieRunnerSimilarRatings {
     }
 
     public void printAverageRatingsByYearAfterAndGenre() {
-        FourthRatings sr = new FourthRatings("ratings.csv");
+        FourthRatings sr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
@@ -58,7 +58,7 @@ public class MovieRunnerSimilarRatings {
     }
 
     public void printSimilarRatings() {
-        FourthRatings fr = new FourthRatings("ratings.csv");
+        FourthRatings fr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
@@ -77,7 +77,7 @@ public class MovieRunnerSimilarRatings {
     }
 
     public void printSimilarRatingsByGenre() {
-        FourthRatings fr = new FourthRatings("ratings.csv");
+        FourthRatings fr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
@@ -97,7 +97,7 @@ public class MovieRunnerSimilarRatings {
     }
 
     public void printSimilarRatingsByDirector() {
-        FourthRatings fr = new FourthRatings("ratings.csv");
+        FourthRatings fr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
@@ -117,7 +117,7 @@ public class MovieRunnerSimilarRatings {
     }
 
     public void printSimilarRatingsByGenreAndMinutes() {
-        FourthRatings fr = new FourthRatings("ratings.csv");
+        FourthRatings fr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
@@ -139,7 +139,7 @@ public class MovieRunnerSimilarRatings {
     }
 
     public void printSimilarRatingsByYearAfterAndMinutes() {
-        FourthRatings fr = new FourthRatings("ratings.csv");
+        FourthRatings fr = new FourthRatings();
 
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("ratings.csv");
