@@ -4,7 +4,8 @@
 public class Test {
     public static void main(String[] args) {
         MovieRunnerSimilarRatings mr = new MovieRunnerSimilarRatings();
-        mr.printAverageRatings();
-        mr.printAverageRatingsByYearAfterAndGenre();
+//        mr.printAverageRatings();
+//        mr.printAverageRatingsByYearAfterAndGenre();
+        mr.printSimilarRatings();
     }
 }

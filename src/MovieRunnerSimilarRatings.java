@@ -56,4 +56,21 @@ public class MovieRunnerSimilarRatings {
         }
         System.out.println("\n");
     }
+
+    public void printSimilarRatings() {
+        FourthRatings fr = new FourthRatings("ratings.csv");
+
+        MovieDatabase.initialize("ratedmoviesfull.csv");
+        RaterDatabase.initialize("ratings.csv");
+
+        System.out.println("read data for " + RaterDatabase.size() + " raters");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        String idToFind = "65";
+        int minimalRaters = 5;
+        int numSimilarRaters = 20;
+
+        System.out.println(MovieDatabase.getTitle(fr.getSimilarRatings(idToFind, numSimilarRaters, minimalRaters).get(0).getItem()));
+    }
 }

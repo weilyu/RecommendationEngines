@@ -38,6 +38,10 @@ public class EfficientRater implements Rater {
 
     //return a list of all the items that have been rated
     public ArrayList<String> getItemsRated() {
-        return (ArrayList<String>) myRatings.keySet();
+        ArrayList<String> output = new ArrayList<>();
+        for (String key : myRatings.keySet()) {
+            output.add(key);
+        }
+        return output;
     }
 }

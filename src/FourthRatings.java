@@ -84,12 +84,15 @@ public class FourthRatings {
     private ArrayList<Rating> getSimilarities(String id) {
         ArrayList<Rating> output = new ArrayList<>();
 
-        RaterDatabase.getRaters().stream().filter(r -> !r.getID().equals(id)).forEach(r -> {
-            double value = dotProduct(RaterDatabase.getRater(id), r);
-            if (value > 0) {
-                output.add(new Rating(r.getID(), value));
+        for (Rater r : RaterDatabase.getRaters()) {
+            if (!r.equals(RaterDatabase.getRater(id))) {
+                double value = dotProduct(RaterDatabase.getRater(id), r);
+                if (value > 0) {
+                    output.add(new Rating(r.getID(), value));
+                }
             }
-        });
+        }
+
 
         Collections.sort(output, Collections.reverseOrder());
         return output;
@@ -100,7 +103,11 @@ public class FourthRatings {
         ArrayList<Rating> output = new ArrayList<>();
 
         //get top numSimilarRaters of raters
-        ArrayList<Rating> topRaters = (ArrayList<Rating>) getSimilarities(id).subList(0, numSimilarRaters);
+        ArrayList<Rating> similar = getSimilarities(id);
+        ArrayList<Rating> topRaters = new ArrayList<>();
+        for (int i = 0; i < numSimilarRaters; i++) {
+            topRaters.add(similar.get(i));
+        }
 
         ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
         for (String movieID : movies) {
