@@ -85,7 +85,10 @@ public class FourthRatings {
 
         for (Rater r : RaterDatabase.getRaters()) {
             if (!r.getID().equals(id)) {
-                output.add(new Rating(r.getID(), dotProduct(RaterDatabase.getRater(id), r)));
+                double value = dotProduct(RaterDatabase.getRater(id), r);
+                if (value > 0) {
+                    output.add(new Rating(r.getID(), value));
+                }
             }
         }
 
