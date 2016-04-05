@@ -67,9 +67,9 @@ public class MovieRunnerSimilarRatings {
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        String idToFind = "65";
-        int minimalRaters = 5;
-        int numSimilarRaters = 20;
+        String idToFind = "337";
+        int minimalRaters = 3;
+        int numSimilarRaters = 10;
 
         System.out.println("printSimilarRatings");
         System.out.println(MovieDatabase.getTitle(fr.getSimilarRatings(idToFind, numSimilarRaters, minimalRaters).get(0).getItem()));
@@ -86,10 +86,10 @@ public class MovieRunnerSimilarRatings {
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        String idToFind = "65";
-        int minimalRaters = 5;
+        String idToFind = "964";
+        int minimalRaters = 5 ;
         int numSimilarRaters = 20;
-        Filter f = new GenreFilter("Action");
+        Filter f = new GenreFilter("Mystery");
 
         System.out.println("printSimilarRatingsByGenre");
         System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
@@ -106,10 +106,10 @@ public class MovieRunnerSimilarRatings {
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        String idToFind = "1034";
-        int minimalRaters = 3;
+        String idToFind = "120";
+        int minimalRaters = 2;
         int numSimilarRaters = 10;
-        Filter f = new DirectorsFilter("Clint Eastwood,Sydney Pollack,David Cronenberg,Oliver Stone");
+        Filter f = new DirectorsFilter("Clint Eastwood,J.J. Abrams,Alfred Hitchcock,Sydney Pollack,David Cronenberg,Oliver Stone,Mike Leigh");
 
         System.out.println("printSimilarRatingsByDirector");
         System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
@@ -126,12 +126,12 @@ public class MovieRunnerSimilarRatings {
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        String idToFind = "65";
-        int minimalRaters = 5;
+        String idToFind = "168";
+        int minimalRaters = 3;
         int numSimilarRaters = 10;
         AllFilters f = new AllFilters();
-        f.addFilter(new GenreFilter("Adventure"));
-        f.addFilter(new MinutesFilter(100, 200));
+        f.addFilter(new GenreFilter("Drama"));
+        f.addFilter(new MinutesFilter(80, 160));
 
         System.out.println("printSimilarRatingsByGenreAndMinutes");
         System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
@@ -148,12 +148,12 @@ public class MovieRunnerSimilarRatings {
 
         System.out.println("read data for " + MovieDatabase.size() + " movies");
 
-        String idToFind = "65";
+        String idToFind = "314";
         int minimalRaters = 5;
         int numSimilarRaters = 10;
         AllFilters f = new AllFilters();
-        f.addFilter(new YearAfterFilter(2000));
-        f.addFilter(new MinutesFilter(80, 100));
+        f.addFilter(new YearAfterFilter(1975));
+        f.addFilter(new MinutesFilter(70, 200));
 
         System.out.println("printSimilarRatingsByYearAfterAndMinutes");
         System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
