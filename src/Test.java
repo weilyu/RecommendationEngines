@@ -7,5 +7,7 @@ public class Test {
 //        mr.printAverageRatings();
 //        mr.printAverageRatingsByYearAfterAndGenre();
         mr.printSimilarRatings();
+        mr.printSimilarRatingsByGenre();
+        mr.printSimilarRatingsByDirector();
     }
 }

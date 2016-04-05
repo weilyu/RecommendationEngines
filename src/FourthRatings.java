@@ -150,7 +150,11 @@ public class FourthRatings {
         ArrayList<Rating> output = new ArrayList<>();
 
         //get top numSimilarRaters of raters
-        ArrayList<Rating> topRaters = (ArrayList<Rating>) getSimilarities(id).subList(0, numSimilarRaters);
+        ArrayList<Rating> similar = getSimilarities(id);
+        ArrayList<Rating> topRaters = new ArrayList<>();
+        for (int i = 0; i < numSimilarRaters; i++) {
+            topRaters.add(similar.get(i));
+        }
 
         ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
         for (String movieID : movies) {
