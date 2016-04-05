@@ -9,5 +9,7 @@ public class Test {
         mr.printSimilarRatings();
         mr.printSimilarRatingsByGenre();
         mr.printSimilarRatingsByDirector();
+        mr.printSimilarRatingsByGenreAndMinutes();
+        mr.printSimilarRatingsByYearAfterAndMinutes();
     }
 }

@@ -115,4 +115,48 @@ public class MovieRunnerSimilarRatings {
         System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
         System.out.println("\n");
     }
+
+    public void printSimilarRatingsByGenreAndMinutes() {
+        FourthRatings fr = new FourthRatings("ratings.csv");
+
+        MovieDatabase.initialize("ratedmoviesfull.csv");
+        RaterDatabase.initialize("ratings.csv");
+
+        System.out.println("read data for " + RaterDatabase.size() + " raters");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        String idToFind = "65";
+        int minimalRaters = 5;
+        int numSimilarRaters = 10;
+        AllFilters f = new AllFilters();
+        f.addFilter(new GenreFilter("Adventure"));
+        f.addFilter(new MinutesFilter(100, 200));
+
+        System.out.println("printSimilarRatingsByGenreAndMinutes");
+        System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
+        System.out.println("\n");
+    }
+
+    public void printSimilarRatingsByYearAfterAndMinutes() {
+        FourthRatings fr = new FourthRatings("ratings.csv");
+
+        MovieDatabase.initialize("ratedmoviesfull.csv");
+        RaterDatabase.initialize("ratings.csv");
+
+        System.out.println("read data for " + RaterDatabase.size() + " raters");
+
+        System.out.println("read data for " + MovieDatabase.size() + " movies");
+
+        String idToFind = "65";
+        int minimalRaters = 5;
+        int numSimilarRaters = 10;
+        AllFilters f = new AllFilters();
+        f.addFilter(new YearAfterFilter(2000));
+        f.addFilter(new MinutesFilter(80, 100));
+
+        System.out.println("printSimilarRatingsByYearAfterAndMinutes");
+        System.out.println(MovieDatabase.getTitle(fr.getSimilarRatingsByFilter(idToFind, numSimilarRaters, minimalRaters, f).get(0).getItem()));
+        System.out.println("\n");
+    }
 }
