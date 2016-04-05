@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * Created by lvwei on 4/4/2016.
@@ -93,7 +95,32 @@ public class FourthRatings {
         return output;
     }
 
-    public void getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) {
+    public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) {
+        //get top numSimilarRaters of raters
+        ArrayList<Rater> topRaters = getTopRaters(id, numSimilarRaters);
 
+        //define output
+        ArrayList<Rating> output = new ArrayList<>();
+
+        //get movie list and number rated by top raters
+        HashMap<n>
+        for (Rating rater : topRaters) {
+            String curRaterID = rater.getItem();
+            ArrayList<String> itemRated = RaterDatabase.getRater(curRaterID).getItemsRated();
+            for (itemRated)
+        }
+
+        //return Rating list of movies sorted by average rating from the largest to the smallest
+        Collections.sort(output, Collections.reverseOrder());
+        return output;
+    }
+
+    private ArrayList<Rater> getTopRaters(String id, int numSimilarRaters) {
+        ArrayList<Rater> output = new ArrayList<>()
+        ArrayList<Rating> allPositiveRaters = getSimilarities(id);
+        for (int i = 0; i < numSimilarRaters; i++) {
+            output.add(RaterDatabase.getRater(allPositiveRaters.get(i).getItem()));
+        }
+        return output;
     }
 }
