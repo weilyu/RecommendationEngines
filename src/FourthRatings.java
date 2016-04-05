@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -83,14 +82,12 @@ public class FourthRatings {
     private ArrayList<Rating> getSimilarities(String id) {
         ArrayList<Rating> output = new ArrayList<>();
 
-        for (Rater r : RaterDatabase.getRaters()) {
-            if (!r.getID().equals(id)) {
-                double value = dotProduct(RaterDatabase.getRater(id), r);
-                if (value > 0) {
-                    output.add(new Rating(r.getID(), value));
-                }
+        RaterDatabase.getRaters().stream().filter(r -> !r.getID().equals(id)).forEach(r -> {
+            double value = dotProduct(RaterDatabase.getRater(id), r);
+            if (value > 0) {
+                output.add(new Rating(r.getID(), value));
             }
-        }
+        });
 
         Collections.sort(output, Collections.reverseOrder());
         return output;
