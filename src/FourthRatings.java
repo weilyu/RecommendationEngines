@@ -96,42 +96,66 @@ public class FourthRatings {
     }
 
     public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) {
-        //get top numSimilarRaters of raters
-        ArrayList<Rater> topRaters = getTopRaters(id, numSimilarRaters);
-
         //define output
         ArrayList<Rating> output = new ArrayList<>();
 
-        //get movie list and number rated by top raters
+        //get top numSimilarRaters of raters
+        ArrayList<Rating> topRaters = (ArrayList<Rating>) getSimilarities(id).subList(0, numSimilarRaters);
 
+        ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
+        for (String movieID : movies) {
+            double curValue = getWeightedAverageByID(movieID, minimalRaters, topRaters);
+            if (curValue > 0) {
+                output.add(new Rating(movieID, curValue));
+            }
+        }
 
         //return Rating list of movies sorted by average rating from the largest to the smallest
         Collections.sort(output, Collections.reverseOrder());
         return output;
     }
 
-    private ArrayList<Rater> getTopRaters(String id, int numSimilarRaters) {
-        ArrayList<Rater> output = new ArrayList<>()
-        ArrayList<Rating> allPositiveRaters = getSimilarities(id);
-        for (int i = 0; i < numSimilarRaters; i++) {
-            output.add(RaterDatabase.getRater(allPositiveRaters.get(i).getItem()));
+    private double getWeightedAverageByID(String id, int minimalRaters, ArrayList<Rating> topRaters) {
+        //count ratings number of this movie ID
+        int count = 0;
+        for (Rating r : topRaters) {
+            Rater curRater = RaterDatabase.getRater(r.getItem());
+            if (curRater.hasRating(id)) count++;
         }
+
+        //if count is larger of equal to minimalRaters, do the average math
+        double sum = 0;
+        if (count >= minimalRaters) {
+            for (Rating r : topRaters) {
+                double curAverage = RaterDatabase.getRater(r.getItem()).getRating(id);
+                if (curAverage >= 0) {
+                    sum += curAverage * r.getValue();
+                }
+            }
+            return sum / count;
+        }
+
+        return 0.0;
+    }
+
+    public ArrayList<Rating> getSimilarRatingsByFilter(String id, int numSimilarRaters, int minimalRaters, Filter filterCriteria) {
+        //define output
+        ArrayList<Rating> output = new ArrayList<>();
+
+        //get top numSimilarRaters of raters
+        ArrayList<Rating> topRaters = (ArrayList<Rating>) getSimilarities(id).subList(0, numSimilarRaters);
+
+        ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
+        for (String movieID : movies) {
+            double curValue = getWeightedAverageByID(movieID, minimalRaters, topRaters);
+            if (curValue > 0) {
+                output.add(new Rating(movieID, curValue));
+            }
+        }
+
+        //return Rating list of movies sorted by average rating from the largest to the smallest
+        Collections.sort(output, Collections.reverseOrder());
         return output;
     }
 
-    private HashMap<String, Integer> countRates(ArrayList<Rater> topRaters) {
-        HashMap<String, Integer> output = new HashMap<>();
-        for (Rater r : topRaters) {
-            ArrayList<String> itemRated = r.getItemsRated();
-            for(String movieID : itemRated) {
-                if (!output.keySet().contains(movieID)) {
-                    output.put(movieID, 1);
-                } else {
-                    int value = output.get(movieID) + 1;
-                    output.put(movieID, value);
-                }
-            }
-        }
-        return output;
-    }
 }
