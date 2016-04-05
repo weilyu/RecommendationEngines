@@ -103,12 +103,7 @@ public class FourthRatings {
         ArrayList<Rating> output = new ArrayList<>();
 
         //get movie list and number rated by top raters
-        HashMap<n>
-        for (Rating rater : topRaters) {
-            String curRaterID = rater.getItem();
-            ArrayList<String> itemRated = RaterDatabase.getRater(curRaterID).getItemsRated();
-            for (itemRated)
-        }
+
 
         //return Rating list of movies sorted by average rating from the largest to the smallest
         Collections.sort(output, Collections.reverseOrder());
@@ -120,6 +115,22 @@ public class FourthRatings {
         ArrayList<Rating> allPositiveRaters = getSimilarities(id);
         for (int i = 0; i < numSimilarRaters; i++) {
             output.add(RaterDatabase.getRater(allPositiveRaters.get(i).getItem()));
+        }
+        return output;
+    }
+
+    private HashMap<String, Integer> countRates(ArrayList<Rater> topRaters) {
+        HashMap<String, Integer> output = new HashMap<>();
+        for (Rater r : topRaters) {
+            ArrayList<String> itemRated = r.getItemsRated();
+            for(String movieID : itemRated) {
+                if (!output.keySet().contains(movieID)) {
+                    output.put(movieID, 1);
+                } else {
+                    int value = output.get(movieID) + 1;
+                    output.put(movieID, value);
+                }
+            }
         }
         return output;
     }
